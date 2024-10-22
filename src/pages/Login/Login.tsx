@@ -13,7 +13,7 @@ import { setLoadingState } from '../../store/userSlice';
 
 const Login: React.FC = () => {
 
-  const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const Login: React.FC = () => {
     dispatch(setLoadingState(true));
     e.preventDefault();
 
-    const model: LoginModel = { email, password };
+    const model: LoginModel = { userName, password };
     const result = (await dispatch(login(model))).payload as ServiceResponse;;
     if (result.success)
       navigate('/dashboard');
@@ -43,14 +43,14 @@ const Login: React.FC = () => {
               <div className="panel-body">
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="username">Username</label>
                     <input
                       type="text"
                       className="form-control"
-                      id="email"
-                      placeholder="Enter email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      id="username"
+                      placeholder="Enter username"
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
                       required
                     />
                   </div>

@@ -12,7 +12,7 @@ export interface Token {
   }
 
   export interface LoginModel {
-    email: string;
+    userName: string;
     password: string;
   }
 
