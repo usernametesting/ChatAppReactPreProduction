@@ -3,7 +3,6 @@ import './Stickers.css';
 
 const Stickers: React.FC<{ onClose: () => void; onStickerSelect: (url: string) => void }> = ({ onClose, onStickerSelect }) => {
     const [searchTerm, setSearchTerm] = useState('smile');
-    const [show, setShow] = useState(false);
     const [stickers, setStickers] = useState<string[]>([]);
 
     useEffect(() => {
