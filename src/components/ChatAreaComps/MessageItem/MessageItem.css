@@ -1,0 +1,11 @@
+.Message-status-icon {
+    margin-left: 5px;
+  }
+  
+  .glyphicon-ok {
+    color: gray;
+  }
+  
+  .glyphicon-ok-seen {
+    color: blue;
+  }

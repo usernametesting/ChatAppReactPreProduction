@@ -1,0 +1,127 @@
+/* RightHeader.css */
+
+.header-right {
+    background-color: #f5f5f5;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    width: 100%;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Profil resmi ile isim arasında boşluk */
+}
+
+
+
+.user-details {
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    text-align: start;
+    align-items: start;
+
+}
+
+.friend-name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.friend-biography {
+    font-size: 12px;
+    margin: 0;
+}
+
+.status-container {
+    text-align: center;
+    margin-right: 10px;
+}
+
+.status-text {
+    font-size: 14px;
+    color: #4caf50;
+}
+
+.some-btn {
+    cursor: pointer;
+}
+
+.arrow.btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.friend-name {
+    font-weight: bold;
+    margin: 0;
+    /* Margin tamamen kaldırıldı */
+    padding: 0;
+    /* Padding tamamen kaldırıldı */
+    font-size: 16px;
+    text-align: start;
+    width: 100%;
+}
+
+.friend-biography {
+    font-size: 14px;
+    margin: 0;
+    /* Margin tamamen kaldırıldı */
+    padding: 0;
+    /* Padding tamamen kaldırıldı */
+    color: #666;
+}
+
+/* --------------------------------------- */
+.header-right {
+    position: relative;
+  }
+  
+  .some-btn {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .options-menu {
+    position: absolute;
+    top: 30px; /* Adjust as needed */
+    right: 0;
+    background-color: #2b2b2b; /* Dark background */
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    width: 200px;
+  }
+  
+  .options-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .options-menu ul li {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .options-menu ul li:hover {
+    background-color: #3b3b3b; /* Hover background */
+  }
+  

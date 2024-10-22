@@ -1,0 +1,15 @@
+.chat-area {
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+  overflow-y: auto;
+}
+
+#notSelectedFriend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  color: black;
+  
+}

@@ -1,0 +1,100 @@
+@media (max-width: 680px) {
+
+    .typing-area {
+        height: 70px;
+    }
+
+    #type-area {
+        color: white;
+    }
+
+    #typing-area,
+    #header-right {
+        background-color: black;
+        color: white;
+    }
+
+    .typing-elements  {
+        color: white !important;
+    }
+
+    .header-elements{
+        color: white;
+    }
+
+
+
+    #chat-list {
+        /* max-height: 20px; */
+    }
+
+    .main-left {
+        width: 100%;
+        padding: 0 !important;
+        /* min-height: 2vh !important; */
+        /* max-height: calc(100vh - 50px); */
+        overflow-y: scroll;
+    }
+
+    .friends-chat-content,
+    .friends-chat-name {
+        color: white;
+    }
+
+    .main-right {
+        display: none;
+    }
+
+    #btn-close-chat {
+        display: block;
+        background-color: transparent;
+        border: 0;
+        width: 50px;
+    }
+
+    .header-right {
+        padding: 0;
+        height: 60px;
+        margin: 0;
+    }
+
+    .header-content {
+        /* padding: 0; */
+    }
+
+    #login-div {
+        width: 400px;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        display: flex;
+        max-height: 200px;
+        justify-content: center;
+        align-items: center;
+        left: 20%;
+        font-size: 10PX;
+
+    }
+
+    .modal-content {
+        border-radius: 8px;
+        max-height: 200px;
+        text-align: center;
+        overflow-y: scroll;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+    }
+
+
+}
+
+.show-chat-area {
+    display: block !important;
+}
+
+.hide-chat-list {
+    display: none !important;
+}

@@ -1,0 +1,23 @@
+
+.not-selected-user{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    background-color: transparent;
+    width: 100%;
+  }
+  
+  .main-right h3 {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  .icon-chat {
+    font-size: 100px;
+    color: #5bc0de;
+    margin-bottom: 20px;
+  }
+  

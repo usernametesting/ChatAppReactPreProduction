@@ -1,0 +1,392 @@
+html, body {
+    height: 100%; /* Sayfanın tamamının yüksekliğini al */
+    margin: 0; /* Varsayılan margin'leri sıfırla */
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.profile img {
+    width: inherit;
+}
+
+.main-left {
+    background: #0b2d54; /* Arka plan rengi */
+    display: flex;
+    flex-direction: column; /* Yüksekliği düzgün bir şekilde düzenle */
+    width: 35%;
+    height: 70vh; /* Tam ekran yüksekliği */
+    /* align-items: ; */
+}
+
+.header-left {
+    padding: 10px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+.header-left .glyphicon {
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin: 0px 5px;
+}
+
+.hamburger-btn,
+.search-btn,
+.contacts-btn {
+    place-self: center start;
+}
+
+.option-btn {
+    place-self: center end;
+}
+
+.chat-list {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* overflow-y: auto; Dikey kaydırma çubuğu ekle */
+}
+
+.chat-list {
+    overflow-y: auto; /* Dikey kaydırma çubuğu ekle */
+    /* flex: 1; Alanı kaplasın */
+}
+
+.chat-list::-webkit-scrollbar {
+    width: 0px;
+}
+
+.friends {
+    padding: 5px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 4fr 1fr;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+.friends:hover {
+    background: #041a31;
+}
+
+.friends-photo {
+    place-self: center;
+}
+
+.friends-credent {
+    padding: 5px;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr 1fr;
+    place-items: center start;
+    overflow: hidden;
+}
+
+.friends-name,
+.friends-Message {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+}
+
+.friends-name {
+    color: white;
+    place-self: end start;
+    font-size: 1.25em;
+}
+
+.friends-Message {
+    color: #777;
+    font-size: 0.85em;
+    place-self: start;
+}
+
+.notif-badge {
+    place-self: center;
+    background: white;
+    color: #555;
+}
+
+.self-info {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10PX;
+    /* display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 4fr 1fr; */
+    place-items: center;
+    background: #041b33;
+    box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.4);
+}
+
+.your-photo {
+    height: 50px;
+    width: 50px;
+    place-content: center start;
+    place-self: center end;
+}
+
+.your-name {
+    color: white;
+    margin-left: 20px;
+    place-self: center start;
+}
+
+.self-info .glyphicon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2em;
+    color: white;
+    place-content: center end;
+    place-self: center;
+    cursor: pointer;
+    transition: 0.2s linear;
+}
+
+.self-info .glyphicon:hover {
+    transform: rotate(30deg);
+}
+
+.main-right {
+    background: #f2f2f2; /* Arka plan rengi */
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    height: 100vh; /* Tam ekran yüksekliği */
+}
+
+.header-right {
+    /* padding: 5px; */
+    background: white;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 6fr 2fr;
+    place-items: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.header-img {
+    place-content: center start;
+    place-self: center end;
+}
+
+.name {
+    font-size: 1.2em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.friend-name {
+    place-self: center start;
+    margin-left: 20px;
+    color: #485373;
+}
+
+.some-btn {
+    font-size: 1.5em;
+    place-items: center end;
+}
+
+.some-btn .glyphicon {
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.chat-area {
+    overflow-y: auto; /* Dikey kaydırma çubuğu ekle */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex: 1; /* Alanın tamamını kaplaması için esnek düzen kullan */
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-area::-webkit-scrollbar {
+    width: 0;
+}
+
+.friends-chat {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 9fr;
+}
+
+.friends-chat-photo {
+    place-self: start end;
+    margin: 0px 5px;
+}
+
+.friends-chat-content {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: 1fr min-content min-content;
+    place-items: start;
+}
+
+.friends-chat-name {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #485373;
+    font-size: 1em;
+    margin: 0px 0px 3px 0px;
+    font-weight: bold;
+}
+
+.friends-chat-balloon {
+    max-width: 90%;
+    padding: 10px 20px;
+    margin: 0;
+    min-width: min-content;
+    border-radius: 0px 20px 20px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #485373;
+    background: white;
+    font-size: 0.9em;
+}
+
+.chat-datetime {
+    margin: 3px 10px;
+    font-size: 0.75em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #aaa;
+}
+
+.your-chat {
+    display: grid;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    grid-auto-flow: row;
+    grid-template-rows: min-content min-content;
+    place-items: start end;
+}
+
+.your-chat-balloon {
+    max-width: 80%;
+    padding: 10px 20px;
+    margin: 0;
+    min-width: min-content;
+    border-radius: 20px 20px 0px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background: green;
+    font-size: 0.9em;
+}
+
+.your-chat-datetime .glyphicon {
+    margin-right: 5px;
+    color: green;
+}
+
+#btn-close-chat {
+    background-color: transparent;
+    border: 0;
+    width: 50px;
+    display: none;
+}
+
+.typing-area {
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.type-area {
+    border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    outline: none;
+    background: none;
+    padding: 10px 20px;
+    color: #333;
+    font-size: 1.1em;
+}
+
+input::placeholder {
+    color: #777;
+}
+
+.typing-area .glyphicon,
+.attach-btn {
+    color: #555;
+    cursor: pointer;
+    place-self: center;
+    transition: .2s linear;
+}
+
+.typing-area .glyphicon:hover,
+.attach-btn span:hover {
+    color: darkslateblue;
+}
+
+.attach-btn {
+    font-size: 1.25em;
+}
+
+.attach-btn span {
+    margin: 0px 10px;
+}
+
+.send-btn {
+    font-size: 2.25em;
+}
+
+.creator {
+    text-align: center;
+    color: #777;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* ------------------------ */
+
+@media (min-width: 768px) {
+    .main-left {
+        width: 25%;
+    }
+
+    .main-right {
+        width: 75%;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-left {
+        width: 100%;
+    }
+
+    .main-right {
+        width: 100%;
+    }
+}
+
+
+.main-left {
+    background: #0b2d54; /* Arka plan rengi */
+    display: flex;
+    flex-direction: column; /* Yüksekliği düzgün bir şekilde düzenle */
+    width: 35%;
+    height: 100vh; /* Tam ekran yüksekliği */
+    justify-content: space-between; 
+    /* overflow-y: hidden;İçeriği en üst ve en alt kısımda yerleştir */
+}
+
+.self-info {
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #041b33;
+    box-shadow: 0px -3px 5px rgba(0, 0, 0, 0.4);
+    margin-top: auto; /* Alanın en altına yerleştirmek için */
+}

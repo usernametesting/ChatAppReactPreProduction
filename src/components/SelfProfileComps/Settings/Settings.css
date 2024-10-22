@@ -1,0 +1,31 @@
+.container-fluid {
+  background-color: #161B22 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: '#0d1117' !important;
+  color: '#c9d1d9' !important;
+  min-height: '100vh' !important;
+  padding: '0' !important;
+  width: '100%' !important;
+  /* overflow: scroll !important; */
+  /* overflow-x: auto !important; */
+  scrollbar-width: 0 !important;
+  scrollbar-width: 0 !important;
+  overflow-y: hidden;
+}
+
+.nav-pills>li>a {
+  color: #c9d1d9 !important;
+  text-decoration: none !important;
+}
+
+.nav-pills>li>a:hover {
+  color: #58a6ff !important;
+  background-color: #21262d !important;
+}
+
+
+.settings-li a:active {
+  background-color: #3498db; 
+  color: black;
+}

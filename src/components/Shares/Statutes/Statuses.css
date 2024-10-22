@@ -1,0 +1,11 @@
+.statuses-page {
+  background-color: #001f3f;
+  color: white;
+  padding: 10px;
+  height: 100%;
+}
+
+h3 {
+  color: #00ff99;
+  margin-bottom: 20px;
+}

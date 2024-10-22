@@ -1,0 +1,97 @@
+
+
+.modal-overlay {
+    position: fixed;
+    /* left: 50%; */
+    right: 20%;
+    bottom: 20%;
+    display: flex;
+    /* opacity: 0;
+    background-color: transparent; */
+    /* justify-content: end; */
+    /* align-items: center; */
+}
+
+.modal-content {
+    /* background: white; */
+   
+    padding: 20px;
+    border-radius: 8px;
+    width: 420px;
+    max-height: 400px;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+/* .close-btn {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+} */
+
+.sticker-search {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+.sticker-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 400px;
+
+}
+
+.sticker-item {
+    width: 80px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.sticker-item:hover {
+    transform: scale(1.1);
+}
+
+
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-messages {
+    margin-top: 20px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+}
+
+.chat-sticker {
+    width: 100px;
+    height: auto;
+    max-height: 400px;
+
+}
+
+.close-btn2 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: black;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #f00; /* Hover üzerine gelindiğinde renk değişimi */
+}
