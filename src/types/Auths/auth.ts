@@ -7,6 +7,7 @@ export interface Token {
   
   export interface RegisterModel {
     email: string;
+    username:string;
     password: string;
   }
 

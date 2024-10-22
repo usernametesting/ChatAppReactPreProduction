@@ -11,6 +11,7 @@ import { setLoadingState } from '../../store/userSlice';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Login: React.FC = () => {
         alertify.warning("Password does not match");
       }
       else {
-        const model: RegisterModel = { email, password };
+        const model: RegisterModel = { email, password ,username};
         const result = (await dispatch(register(model))).payload as ServiceResponse;
         if (result.success) {
           alertify.success(result.message);
@@ -63,6 +64,18 @@ const Login: React.FC = () => {
                       placeholder="Enter email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="email">Username</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="username"
+                      placeholder="Enter username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       required
                     />
                   </div>

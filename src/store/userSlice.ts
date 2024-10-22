@@ -57,7 +57,7 @@ export const getCurrentlyUser = createAsyncThunk(
     try {
       const response = await fetchCurrentlyUser();
       if (response.success) {
-        return response.resultObj as User;
+        return response.resultObj as CurrentlyUser;
       } else {
         return rejectWithValue(response.Message);
       }

@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import './Settings.css'
 import { changeUserBiografy, setCurrentlyUserProfImage, setLoadingState, userfileUpload } from '../../../store/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,8 +12,6 @@ const Settings: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>();
     const [biografy, setbiografy] = useState(currentlyUser?.biografy || '');
     const [show, setShow] = useState(false);
-
-
 
     const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -79,7 +77,7 @@ const Settings: React.FC = () => {
                             </label>
                         </div>
                         <p><strong style={{ color: '#58a6ff' }}>{currentlyUser.userName}</strong></p>
-                        <a  style={{ color: '#8b949e', textDecoration: 'none' }}>
+                        <a style={{ color: '#8b949e', textDecoration: 'none' }}>
                             {
                                 (currentlyUser?.biografy == null || currentlyUser?.biografy == ' ') ? ('Hey there! I am using Chat') : (currentlyUser.biografy)
                             }
@@ -89,8 +87,27 @@ const Settings: React.FC = () => {
                     <ul className="nav nav-pills nav-stacked">
 
                         <li className='settings-li'>
-                            <button onClick={handleBio} data-toggle="modal" data-target="#setbiografy" style={{ color: '#c9d1d9', backgroundColor: "transparent", border: 0 }}>
-                                <i className="glyphicon glyphicon-user"></i> biografy
+                            <button
+                                onClick={handleBio}
+                                data-toggle="modal"
+                                data-target="#setbiografy"
+                                style={{ color: '#c9d1d9', backgroundColor: "transparent", border: 0 }}
+                            >
+                                <i className="fas fa-user-edit"></i> Change Bio
+                            </button>
+                        </li>
+
+                        <li className='settings-li'>
+                            <button
+                                style={{
+                                    color: '#c9d1d9',
+                                    backgroundColor: "transparent",
+                                    border: 0,
+                                    cursor: 'not-allowed'
+                                }}
+                                disabled
+                            >
+                                <i className="fas fa-envelope"></i> {currentlyUser.email}
                             </button>
                         </li>
 
