@@ -41,7 +41,6 @@ export const connectToHub = async (dispatch: any, getState: any) => {
             handleUserFocusConnectedToMe(userId);
         });
         connection.on("OnUserFocusDisconnectedToMe", (userId: string) => {
-            console.log("disconnected")
             handleUserFocusDisconnectedToMe(userId);
         });
 

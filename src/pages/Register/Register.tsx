@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { register } from '../../store/authSlice';
 import { RegisterModel, ServiceResponse } from './../../types/Auths/auth';
-import Spinner from '../../components/Spinner/Spinner';
+// import Spinner from '../../components/Spinner/Spinner';
 import { setLoadingState } from '../../store/userSlice';
 
 const Login: React.FC = () => {
@@ -16,7 +16,7 @@ const Login: React.FC = () => {
   const [confirmPass, setConfirmPass] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { loading } = useSelector((state: RootState) => state.users);
+  // const { loading } = useSelector((state: RootState) => state.users);
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,7 +45,7 @@ const Login: React.FC = () => {
 
   return (
     <div>
-      {loading && <Spinner />}
+      {/* {loading && <Spinner />} */}
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-md-4 col-sm-6 col-xs-12">

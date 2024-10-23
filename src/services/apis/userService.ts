@@ -35,9 +35,7 @@ export const sendStatus = async (form: FormData): Promise<ServiceResponse> => {
 };
 
 export const changeMessageState = async (userId: number): Promise<ServiceResponse> => {
-  console.log("change message state");
   const response = await axiosInstance.post(`/user/ChangedMessageState`, userId);
-  console.log(response);
   return response.data;
 };
 export const createUser = async (userData: any) => {

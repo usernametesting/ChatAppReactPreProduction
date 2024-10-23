@@ -36,7 +36,6 @@ export const changeMessageState = createAsyncThunk(
   'users/changeMessageState',
   async (userId: number, { rejectWithValue }) => {
     try {
-      console.log("userid "+userId)
       if (userId == 0)
         return rejectWithValue("user id is 0");
       const response = await postMessageState(userId);
@@ -217,8 +216,6 @@ const userSlice = createSlice({
     },
     changedMessageState: (state, action: PayloadAction<string>) => {
       const user = state.friends.find(friend => friend.id == action.payload);
-      console.log("first");
-      console.log(JSON.stringify(user));
       if (user) {
         user?.messages.forEach(message => {
           if (message.isSender && message.state != MessageState.DELETED)
@@ -247,6 +244,7 @@ const userSlice = createSlice({
       state.hasChanges = !state.hasChanges;
     },
     setLoadingState: (state, action: PayloadAction<boolean>) => {
+      console.log("first")
       state.loading = action.payload;
     },
     changeUserBiografy: (state, action: PayloadAction<string>) => {

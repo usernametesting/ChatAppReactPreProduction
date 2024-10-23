@@ -35,7 +35,7 @@ const TypingArea: React.FC = () => {
       state: getCurrentMessageState()
     };
 
-    await dispatch(addMessageToSelectedUser(newMessage));
+    // await dispatch(addMessageToSelectedUser(newMessage));
     await dispatch(sendMessage(newMessage));
     // dispatch(setLoadingState(false));
   };
@@ -58,7 +58,7 @@ const TypingArea: React.FC = () => {
         message: audioUrl,
       };
       setAudioUrl(null);
-      // await dispatch(addMessageToSelectedUser(newMessage));
+      await dispatch(addMessageToSelectedUser(newMessage));
       await dispatch(sendAudioMessage({ audioBlob: audioBlob, Message: newMessage }));
 
 
@@ -136,7 +136,7 @@ const TypingArea: React.FC = () => {
         <Stickers onClose={() => setShowStickerModal(false)} onStickerSelect={handleStickerSelect} />
       }
       <div id='typing-area' className="typing-area" onKeyDown={handleKeyDown}>
-        <input  ref={inputRef} id="type-area" value={MessageContent} onChange={(e) => setMessageContent(e.target.value)} className="type-area typing-elements" placeholder="Type something..." />
+        <input ref={inputRef} id="type-area" value={MessageContent} onChange={(e) => setMessageContent(e.target.value)} className="type-area typing-elements" placeholder="Type something..." />
         <div className="attach-btn">
           <div className="typing-elements" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
             <AudioMessage audioUrl={audioUrl} setAudioUrl={setAudioUrl} />

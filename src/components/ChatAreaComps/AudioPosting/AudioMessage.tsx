@@ -36,15 +36,15 @@ const AudioMessage: React.FC<AudioMessageProps> = ({ audioUrl, setAudioUrl }) =>
         if (mediaRecorderRef.current) {
             mediaRecorderRef.current.stop();
             setIsRecording(false);
-            audioChunksRef.current = [];  
+            audioChunksRef.current = [];
             setAudioUrl(null);
         }
     };
     const CancelRecording = () => {
         setIsRecording(false);
-        audioChunksRef.current = [];  
+        audioChunksRef.current = [];
         setAudioUrl(null);
-        
+
     };
 
 
@@ -57,7 +57,7 @@ const AudioMessage: React.FC<AudioMessageProps> = ({ audioUrl, setAudioUrl }) =>
                 </button>}
             {isRecording && !audioUrl &&
                 <button onClick={stopRecording}>
-                    <i className="fa fa-stop" style={{color:'green',fontSize:'25px'}}></i>
+                    <i className="fa fa-stop" style={{ color: 'green', fontSize: '25px' }}></i>
                 </button>
             }
 
@@ -65,9 +65,12 @@ const AudioMessage: React.FC<AudioMessageProps> = ({ audioUrl, setAudioUrl }) =>
             {audioUrl && (
                 <div style={{ display: 'flex', }}>
                     <audio controls src={audioUrl}></audio>
-                    <button onClick={CancelRecording}>
-                        Cancel
+                    <button
+                        onClick={CancelRecording}
+                        style={{ backgroundColor: 'transparent', border: '0' }}
+                        className="glyphicon glyphicon-remove">
                     </button>
+
                 </div>
             )}
         </div>
