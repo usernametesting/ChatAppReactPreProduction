@@ -1,8 +1,8 @@
 // LeftHeader.tsx
 import React from 'react';
 import '../Header/Header.css';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../store/store';
 import Contacts from '../../LeftPanelComps/Contacts/Contacts';
 import { setComponent } from '../../../store/dynamicComponentRenderSlice';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -13,6 +13,7 @@ import { startVoiceCall } from '../../../services/signalR/signalRService';
 
 const LeftHeader: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { selectedUserId } = useSelector((state: RootState) => state.users);
 
   const handleContactBtnClick = () => {
     // dispatch(setLoadingState(true));
@@ -52,7 +53,7 @@ const LeftHeader: React.FC = () => {
         </button>
 
 
-        <button onClick={() => startVoiceCall("2")} style={{ backgroundColor: 'transparent', border: 0, color: 'white', fontSize: '22px' }}  className='statuses-btn'>
+        <button onClick={() => startVoiceCall(selectedUserId.toString())} style={{ backgroundColor: 'transparent', border: 0, color: 'white', fontSize: '22px' }}  className='statuses-btn'>
         <i className="fa fa-phone"></i> 
         </button>
 
