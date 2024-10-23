@@ -9,6 +9,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import Statuses from '../../Shares/Statutes/Statutes';
 import ChatList from '../../ChatListComps/ChatList/ChatList';
 import { setLoadingState } from '../../../store/userSlice';
+import { startVoiceCall } from '../../../services/signalR/signalRService';
 
 const LeftHeader: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -24,7 +25,7 @@ const LeftHeader: React.FC = () => {
 
     dispatch(setComponent(<Statuses />));
     // setTimeout(() => {
-      dispatch(setLoadingState(false));
+    dispatch(setLoadingState(false));
     // }, 1000);
 
   }
@@ -49,6 +50,12 @@ const LeftHeader: React.FC = () => {
         <button onClick={handleStasusesClick} style={{ backgroundColor: 'transparent', border: 0, color: 'white', fontSize: '22px' }} className="statuses-btn">
           <i className="fa fa-bullseye"></i>
         </button>
+
+
+        <button onClick={() => startVoiceCall("2")} style={{ backgroundColor: 'transparent', border: 0, color: 'white', fontSize: '22px' }}  className='statuses-btn'>
+        <i className="fa fa-phone"></i> 
+        </button>
+
 
       </div>
 

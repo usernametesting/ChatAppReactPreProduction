@@ -7,6 +7,8 @@ import { TellBeingFocusedToUser } from "../apis/userService";
 
 
 
+
+let peerConnection: RTCPeerConnection | null = null;
 let connection: signalR.HubConnection | null = null;
 
 export const connectToHub = async (dispatch: any, getState: any) => {
@@ -56,10 +58,24 @@ export const connectToHub = async (dispatch: any, getState: any) => {
             OnDeleteMessage(userId, msgId);
         });
 
+        // ------------------------------------------------- voice calling -------------------------------------------------
+        connection.on("ReceiveOffer", async (offer: string,toUserId) => {
+            await handleReceivedOffer(offer,toUserId);
+        });
+
+        connection.on("ReceiveAnswer", async (answer: string) => {
+            await handleReceivedAnswer(answer);
+        });
+
+        connection.on("ReceiveIceCandidate", async (candidate: string) => {
+            await handleIceCandidate(candidate);
+        });
+
     } catch (err) {
         console.log("Error while starting connection: ", err);
     }
 
+    // hub method implements
 
     const handleReceivedMessage = async (Message: MessageDTO) => {
         try {
@@ -122,7 +138,52 @@ export const connectToHub = async (dispatch: any, getState: any) => {
         dispatch(onDeleteMessage({ msgId: msgId, userId: userId }));
     }
 
+    // ------------------------------------------------- vopice calling imps -------------------------------------------------
+    const handleReceivedOffer = async (offer: string,toUserId:string) => {
+        if (!peerConnection) {
+            peerConnection = new RTCPeerConnection();
+        }
+        await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(offer)));
+
+        const answer = await peerConnection.createAnswer();
+        await peerConnection.setLocalDescription(answer);
+
+        connection?.invoke("SendAnswer", JSON.stringify(answer), toUserId);
+    };
+
+    const handleReceivedAnswer = async (answer: string) => {
+        if (!peerConnection) return;
+        await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(answer)));
+    };
+
+    const handleIceCandidate = async (candidate: string) => {
+        if (!peerConnection) return;
+        await peerConnection.addIceCandidate(new RTCIceCandidate(JSON.parse(candidate)));
+    };
 
 };
 
 
+export const startVoiceCall = async (toUserId: string) => {
+    peerConnection = new RTCPeerConnection();
+
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    stream.getTracks().forEach(track => peerConnection!.addTrack(track, stream));
+
+    peerConnection.onicecandidate = (event) => {
+        if (event.candidate) {
+            connection?.invoke("SendIceCandidate", JSON.stringify(event.candidate), toUserId);
+        }
+    };
+
+    peerConnection.ontrack = (event) => {
+        const audioElement = document.createElement('audio');
+        audioElement.srcObject = event.streams[0];
+        console.log(audioElement)
+        audioElement.play();
+    };
+
+    const offer = await peerConnection.createOffer();
+    await peerConnection.setLocalDescription(offer);
+    connection?.invoke("SendOffer", JSON.stringify(offer), toUserId);
+};
