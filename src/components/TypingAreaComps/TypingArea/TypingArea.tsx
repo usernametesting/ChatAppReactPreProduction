@@ -131,7 +131,7 @@ const TypingArea: React.FC = () => {
     }
   };
   return (
-    <div >
+    <div id="type-area-common-div" style={{overflowX:'scroll'}}>
       {showStickerModal &&
         <Stickers onClose={() => setShowStickerModal(false)} onStickerSelect={handleStickerSelect} />
       }

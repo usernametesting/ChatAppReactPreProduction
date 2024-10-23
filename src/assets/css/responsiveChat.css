@@ -8,6 +8,10 @@
         color: white;
     }
 
+    #type-area-common-div{
+        background-color: black;
+    }
+
     #typing-area,
     #header-right {
         background-color: black;
