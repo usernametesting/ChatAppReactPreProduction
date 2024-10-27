@@ -195,17 +195,17 @@ export const connectToHub = async (dispatch: any, getState: any) => {
     }
 
     // ------------------------------------------------- vopice calling imps -------------------------------------------------
-    const handleReceivedOffer = async (offer: string, toUserId: string) => {
-        if (!peerConnection) {
-            peerConnection = new RTCPeerConnection();
-        }
-        await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(offer)));
+    // const handleReceivedOffer = async (offer: string, toUserId: string) => {
+    //     if (!peerConnection) {
+    //         peerConnection = new RTCPeerConnection();
+    //     }
+    //     await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(offer)));
 
-        const answer = await peerConnection.createAnswer();
-        await peerConnection.setLocalDescription(answer);
+    //     const answer = await peerConnection.createAnswer();
+    //     await peerConnection.setLocalDescription(answer);
 
-        connection?.invoke("SendAnswer", JSON.stringify(answer), toUserId);
-    };
+    //     connection?.invoke("SendAnswer", JSON.stringify(answer), toUserId);
+    // };
 
     const handleReceivedAnswer = async (answer: string) => {
         if (!peerConnection) return;
