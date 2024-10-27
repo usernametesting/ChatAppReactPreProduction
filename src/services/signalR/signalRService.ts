@@ -59,17 +59,73 @@ export const connectToHub = async (dispatch: any, getState: any) => {
         });
 
         // ------------------------------------------------- voice calling -------------------------------------------------
-        connection.on("ReceiveOffer", async (offer: string,toUserId) => {
-            await handleReceivedOffer(offer,toUserId);
+        // connection.on("ReceiveOffer", async (offer: string,toUserId) => {
+        //     await handleReceivedOffer(offer,toUserId);
+        // });
+        // connection.on("ReceiveOffer", async (offer: string, fromUserId: string) => {
+        //     const peerConnection = new RTCPeerConnection();
+        //     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+        //     stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
+
+        //     peerConnection.onicecandidate = (event) => {
+        //         if (event.candidate) {
+        //             connection?.invoke("SendIceCandidate", JSON.stringify(event.candidate), fromUserId);
+        //         }
+        //     };
+
+        //     await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(offer)));
+
+        //     const answer = await peerConnection.createAnswer();
+        //     await peerConnection.setLocalDescription(answer);
+
+        //     connection?.invoke("SendAnswer", JSON.stringify(answer), fromUserId);
+        // });
+        // Gelen offer'ı kabul etme işlemi
+        connection.on("ReceiveOffer", async (offer: string, toUserId: string) => {
+            if (!peerConnection) {
+                peerConnection = new RTCPeerConnection();
+            }
+
+            // Teklifi kabul et
+            var a = confirm("are you");
+            if (a) {
+                await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(offer)));
+
+                // ICE adaylarını dinle ve gönder
+                peerConnection.onicecandidate = (event) => {
+                    if (event.candidate) {
+                        connection?.invoke("SendIceCandidate", JSON.stringify(event.candidate), toUserId);
+                    }
+                };
+
+                // Cevap oluştur ve karşı tarafa gönder
+                const answer = await peerConnection.createAnswer();
+                await peerConnection.setLocalDescription(answer);
+                connection?.invoke("SendAnswer", JSON.stringify(answer), toUserId);
+            }
+
         });
+
 
         connection.on("ReceiveAnswer", async (answer: string) => {
             await handleReceivedAnswer(answer);
         });
 
+        // connection.on("ReceiveIceCandidate", async (candidate: string) => {
+        //     await handleIceCandidate(candidate);
+        // });
         connection.on("ReceiveIceCandidate", async (candidate: string) => {
-            await handleIceCandidate(candidate);
+            if (peerConnection) {
+                try {
+                    await peerConnection.addIceCandidate(new RTCIceCandidate(JSON.parse(candidate)));
+                } catch (err) {
+                    console.error('Error adding received ICE candidate', err);
+                }
+            }
         });
+
+
 
     } catch (err) {
         console.log("Error while starting connection: ", err);
@@ -139,7 +195,7 @@ export const connectToHub = async (dispatch: any, getState: any) => {
     }
 
     // ------------------------------------------------- vopice calling imps -------------------------------------------------
-    const handleReceivedOffer = async (offer: string,toUserId:string) => {
+    const handleReceivedOffer = async (offer: string, toUserId: string) => {
         if (!peerConnection) {
             peerConnection = new RTCPeerConnection();
         }
@@ -156,33 +212,30 @@ export const connectToHub = async (dispatch: any, getState: any) => {
         await peerConnection.setRemoteDescription(new RTCSessionDescription(JSON.parse(answer)));
     };
 
-    const handleIceCandidate = async (candidate: string) => {
-        if (!peerConnection) return;
-        await peerConnection.addIceCandidate(new RTCIceCandidate(JSON.parse(candidate)));
-    };
+    // const handleIceCandidate = async (candidate: string) => {
+    //     if (!peerConnection) return;
+    //     await peerConnection.addIceCandidate(new RTCIceCandidate(JSON.parse(candidate)));
+    // };
 
 };
 
 
 export const startVoiceCall = async (toUserId: string) => {
+    // WebRTC bağlantısı oluşturuluyor
     peerConnection = new RTCPeerConnection();
 
+    // Kullanıcının mikrofonuna erişim
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     stream.getTracks().forEach(track => peerConnection!.addTrack(track, stream));
 
+    // ICE adayları toplanıyor ve karşı tarafa gönderiliyor
     peerConnection.onicecandidate = (event) => {
         if (event.candidate) {
             connection?.invoke("SendIceCandidate", JSON.stringify(event.candidate), toUserId);
         }
     };
 
-    peerConnection.ontrack = (event) => {
-        const audioElement = document.createElement('audio');
-        audioElement.srcObject = event.streams[0];
-        console.log(audioElement)
-        audioElement.play();
-    };
-
+    // Teklif oluştur ve karşı tarafa gönder
     const offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
     connection?.invoke("SendOffer", JSON.stringify(offer), toUserId);
