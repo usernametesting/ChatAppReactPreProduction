@@ -244,7 +244,6 @@ const userSlice = createSlice({
       state.hasChanges = !state.hasChanges;
     },
     setLoadingState: (state, action: PayloadAction<boolean>) => {
-      console.log("first")
       state.loading = action.payload;
     },
     changeUserBiografy: (state, action: PayloadAction<string>) => {

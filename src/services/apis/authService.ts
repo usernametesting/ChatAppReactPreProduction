@@ -25,6 +25,7 @@ export const loginUser = async (model: LoginModel): Promise<ServiceResponse> => 
   try {
 
     const response = await axiosInstance.post<ServiceResponse>('account/login', model);
+    console.log(response)
     if (response?.data?.success) {
 
       const { accessToken, refreshToken, expiration } = response.data.resultObj as Token;

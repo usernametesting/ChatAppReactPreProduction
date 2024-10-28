@@ -221,12 +221,11 @@ export const connectToHub = async (dispatch: any, getState: any) => {
 
 
 export const startVoiceCall = async (toUserId: string) => {
-    // WebRTC bağlantısı oluşturuluyor
     peerConnection = new RTCPeerConnection();
 
-    // Kullanıcının mikrofonuna erişim
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
     stream.getTracks().forEach(track => peerConnection!.addTrack(track, stream));
+    console.log("Audio stream tracks:", stream.getAudioTracks()); 
 
     // ICE adayları toplanıyor ve karşı tarafa gönderiliyor
     peerConnection.onicecandidate = (event) => {
