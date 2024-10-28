@@ -234,8 +234,22 @@ export const startVoiceCall = async (toUserId: string) => {
         }
     };
 
+    peerConnection.oniceconnectionstatechange = () => {
+        console.log("ICE Connection State:", peerConnection?.iceConnectionState);
+    };
+
+    // Gelen ses akışını karşı tarafta oynatma
+    peerConnection.ontrack = (event) => {
+        const [remoteStream] = event.streams;
+        const audioElement = new Audio();
+        audioElement.srcObject = remoteStream;
+        audioElement.play();
+    };
+
     // Teklif oluştur ve karşı tarafa gönder
     const offer = await peerConnection.createOffer();
     await peerConnection.setLocalDescription(offer);
     connection?.invoke("SendOffer", JSON.stringify(offer), toUserId);
 };
+
+
