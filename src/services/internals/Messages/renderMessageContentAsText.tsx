@@ -3,11 +3,17 @@ import { MessageType } from "../../../enums/Messages/MessageType";
 import { MessageDTO } from "../../../types/Messages/Message";
 
 export const renderMessageContentAsText = (message: MessageDTO) => {
-    if(message.state==MessageState.DELETED)
+    if (message.state == MessageState.DELETED)
         return <>message was deleted</>;
     switch (message.messageType) {
         case MessageType.TEXT:
-            return <>{message.message}</>;
+            return (
+                <>
+                    {message.message!.length > 20
+                        ? message.message!.substring(0, 20) + "..."
+                        : message.message}
+                </>
+            );
         case MessageType.VIDEO:
             return (
                 <>Sent video</>

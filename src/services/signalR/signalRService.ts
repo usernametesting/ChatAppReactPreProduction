@@ -243,6 +243,7 @@ export const startVoiceCall = async (toUserId: string) => {
         const [remoteStream] = event.streams;
         const audioElement = new Audio();
         audioElement.srcObject = remoteStream;
+        // console.log(first)
         audioElement.play();
     };
 

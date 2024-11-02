@@ -4,11 +4,13 @@
         height: 70px;
     }
 
+
+
     #type-area {
         color: white;
     }
 
-    #type-area-common-div{
+    #type-area-common-div {
         background-color: black;
     }
 
@@ -18,11 +20,11 @@
         color: white;
     }
 
-    .typing-elements  {
+    .typing-elements {
         color: white !important;
     }
 
-    .header-elements{
+    .header-elements {
         color: white;
     }
 

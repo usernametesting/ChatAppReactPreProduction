@@ -29,14 +29,18 @@ const RightHeader: React.FC = () => {
             <i className="glyphicon glyphicon-arrow-left header-elements" style={{ fontSize: '24px' }}></i>
           </button>
 
-          <a id="header-img" className="profile header-img" data-toggle="modal" data-target="#friendPersonalModal">
+          <a id="header-img" className="profile header-img" data-toggle="modal~" data-target="#friendPersonalModal">
             <img src={selectedFriend?.profImageUrl} alt="image" />
           </a>
           <div className="user-details">
-            <h5 className="name friend-name header-elements">{selectedFriend?.userName}</h5>
-            {selectedFriend?.biografy && (
+            <h5 className="name friend-name header-elements" id='bio-header'>{selectedFriend?.userName}</h5>
+            {selectedFriend?.biografy && window.innerWidth > 680 && (
               <h5 className="friend-biography header-elements" style={{ marginTop: '5px' }}>
                 {selectedFriend?.biografy}
+              </h5>
+            ) || selectedFriend?.biografy && window.innerWidth < 680 && (
+              <h5 className="friend-biography header-elements" style={{ marginTop: '5px' }}>
+                {selectedFriend?.biografy.substring(0, 10)+ "..."}
               </h5>
             )}
           </div>
