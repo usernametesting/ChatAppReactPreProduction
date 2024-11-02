@@ -29,7 +29,7 @@ const SelfProfile: React.FC = () => {
                     <span className="friends-name">{currentlyUser?.userName}</span>
                     <span style={{ fontSize: '12px' }} className="friends-name">
                         {
-                            (currentlyUser?.biografy == null || currentlyUser?.biografy == ' ') ? ('Hey there! I am using Chat') : (currentlyUser.biografy)
+                            (currentlyUser?.biografy == null || currentlyUser?.biografy == ' ') ? ('Hey there! I am using Chat') : (currentlyUser.biografy.substring(0,30)+"...")
                         }
                     </span>
                 </div>
