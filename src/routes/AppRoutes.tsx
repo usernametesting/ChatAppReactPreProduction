@@ -6,6 +6,7 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 import ProtectedRoute from './ProtectedRoute';
 import Spinner from '../components/Spinner/Spinner';
 import Confirmation from '../pages/Confirmation/Confirmation';
+import GetLogs from '../components/Tests/GetLogs';
 
 const AppRoutes: React.FC = () => {
 
@@ -13,6 +14,7 @@ const AppRoutes: React.FC = () => {
     <>
       <Spinner />
       <Routes>
+      <Route path="/getLogs" element={<GetLogs />} />
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

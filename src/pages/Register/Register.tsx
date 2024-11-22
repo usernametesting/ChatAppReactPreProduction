@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../commons/auth/auth.css';
 import { useNavigate } from 'react-router-dom';
 import alertify from 'alertifyjs';
@@ -18,6 +18,31 @@ const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   // const { loading } = useSelector((state: RootState) => state.users);
 
+  useEffect(() => {
+    const addLog = async () => {
+      try {
+        const response = await fetch('/.netlify/functions/log', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: 'Component mounted successfully!',
+            level: 'info',
+          }),
+        });
+
+        if (response.ok) {
+          console.log('Log added successfully');
+        } else {
+          console.error('Failed to add log');
+        }
+      } catch (error) {
+        console.error('Error adding log:', error);
+      }
+    };
+
+    // Log ekleme fonksiyonunu çağır
+    addLog();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     dispatch(setLoadingState(true));
@@ -28,7 +53,7 @@ const Login: React.FC = () => {
         alertify.warning("Password does not match");
       }
       else {
-        const model: RegisterModel = { email, password ,username};
+        const model: RegisterModel = { email, password, username };
         const result = (await dispatch(register(model))).payload as ServiceResponse;
         if (result.success) {
           alertify.success(result.message);
